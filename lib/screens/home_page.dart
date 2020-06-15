@@ -3,22 +3,21 @@ import 'package:geometry/components/product_card_content.dart';
 import 'package:geometry/constants.dart';
 import 'package:geometry/models/product.dart';
 import 'package:geometry/components/product_card.dart';
+import 'package:geometry/screens/detail_page.dart';
+import 'package:geometry/components/nav_bar.dart';
 
 ProductList products = new ProductList();
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.menu),
-        elevation: 0.0,
-        title: Text(
-          'GEOMETRY',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
+      appBar: buildAppBar(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,12 +34,12 @@ class HomePage extends StatelessWidget {
                 style: kCategoryTextStyle,
               ),
             ),
-            SizedBox(height: 40.0),
+            SizedBox(height: 80.0),
             Container(
               width: double.infinity,
               height: 700.0,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 50.0),
+                padding: const EdgeInsets.only(left: 40.0),
                 child: ListView.builder(
                     itemCount: products.productList.length,
                     scrollDirection: Axis.horizontal,
@@ -49,7 +48,20 @@ class HomePage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       var productList = products.productList;
                       return ProductCard(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => DetailPage(
+                                productTitle: productList[index].productTitle,
+                                productDescription:
+                                    productList[index].productDescription,
+                                productImage: productList[index].productImage,
+                                productPrice: productList[index].productPrice,
+                              ),
+                            ),
+                          );
+                        },
                         cardContent: ProductCardContent(
                           productImage: productList[index].productImage,
                           productTitle: productList[index].productTitle,

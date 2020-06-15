@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geometry/constants.dart';
+import 'package:geometry/components/styled_button.dart';
 
 class ProductCardContent extends StatelessWidget {
   ProductCardContent({
@@ -23,9 +24,9 @@ class ProductCardContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
-            flex: 5,
+            flex: 7,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: Image.asset(
                 productImage,
               ),
@@ -45,10 +46,14 @@ class ProductCardContent extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(left: 40.0),
-            child: Text('\$$productPrice', style: kPriceTextStyle,),
+            child: Text(
+              '\$$productPrice',
+              style: kPriceTextStyle,
+            ),
           ),
         ),
         Expanded(
+          flex: 2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -56,26 +61,30 @@ class ProductCardContent extends StatelessWidget {
                 flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 40.0),
-                  child: RaisedButton(
-                    color: Color(0xFF313131),
+                  child: StyledButton(
+                    height: 70.0,
                     onPressed: () {
-                      // go to product detail page
+                      
                     },
-                    child: Icon(FontAwesomeIcons.plus),
+                    buttonChild: Icon(Icons.add),
                   ),
                 ),
               ),
-              SizedBox(width: 15.0),
-              RaisedButton(
-                onPressed: () {
-                  // add to wishlist
-                },
-                color: Color(0xFF313131),
-                shape: CircleBorder(),
-                child: Icon(
-                  FontAwesomeIcons.bookmark,
-                  color: Colors.white,
-                  size: 20.0,
+              Expanded(
+                child: SizedBox(
+                  height: 70.0,
+                  child: RaisedButton(
+                    onPressed: () {
+                      // add to wishlist
+                    },
+                    color: Color(0xFF313131),
+                    shape: CircleBorder(),
+                    child: Icon(
+                      FontAwesomeIcons.bookmark,
+                      color: Colors.white,
+                      size: 20.0,
+                    ),
+                  ),
                 ),
               ),
             ],
