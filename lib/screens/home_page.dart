@@ -37,19 +37,18 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 40.0),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 50.0),
               width: double.infinity,
               height: 700.0,
-              child: ListView.builder(
-                  itemCount: products.productList.length,
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    var productList = products.productList;
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: ProductCard(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 50.0),
+                child: ListView.builder(
+                    itemCount: products.productList.length,
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      var productList = products.productList;
+                      return ProductCard(
                         onPressed: () {},
                         cardContent: ProductCardContent(
                           productImage: productList[index].productImage,
@@ -58,9 +57,9 @@ class HomePage extends StatelessWidget {
                               productList[index].productDescription,
                           productPrice: productList[index].productPrice,
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+              ),
             ),
           ],
         ),

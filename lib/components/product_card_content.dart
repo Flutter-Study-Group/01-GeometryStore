@@ -19,13 +19,13 @@ class ProductCardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
             flex: 5,
             child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.all(10.0),
               child: Image.asset(
                 productImage,
               ),
@@ -48,7 +48,6 @@ class ProductCardContent extends StatelessWidget {
             child: Text('\$$productPrice', style: kPriceTextStyle,),
           ),
         ),
-        SizedBox(height: 10.0),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
