@@ -10,18 +10,33 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+
+  var fontStyle1=TextStyle(
+      fontWeight: FontWeight.w700,
+      fontFamily: 'Work Sans/WorkSans-Bold',
+      fontSize: 35.0
+  );
+
+  var fontStyle2=TextStyle(
+    fontFamily: 'Work Sans/WorkSans-Regular',
+    fontSize: 25.0,
+    color: Colors.grey[300],
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         child: Column(
           children: <Widget>[
-            Text(widget.productName),
-            Text(widget.productColor),
+            Text(widget.productName, style:fontStyle1),
+            Text(widget.productColor,style: fontStyle2,),
+            SizedBox(height: 14.0,),
             Image.asset(widget.imgUrl),
-            Text(widget.productPrice),
+            Text(widget.productPrice, style: fontStyle1,),
             RaisedButton(
-              child: Text('Add to Cart'),
+              color: Colors.black87,
+              child: Text('Add to Cart',
+              style: TextStyle(color:Colors.white),),
               onPressed: (){
                 print('Item added to cart');
               },

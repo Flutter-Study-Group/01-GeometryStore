@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geometry/Screens/details.dart';
 
 class ProductCategory extends StatefulWidget {
   final String imgUrl;
@@ -12,6 +13,17 @@ class ProductCategory extends StatefulWidget {
   _ProductCategoryState createState() => _ProductCategoryState();}
 
 class _ProductCategoryState extends State<ProductCategory> {
+  var fontStyle1=TextStyle(
+      fontWeight: FontWeight.w700,
+      fontFamily: 'Work Sans/WorkSans-Bold',
+      fontSize: 35.0
+  );
+
+  var fontStyle2=TextStyle(
+    fontFamily: 'Work Sans/WorkSans-Regular',
+    fontSize: 25.0,
+    color: Colors.grey[300],
+  );
   @override
   Widget build(BuildContext context) {
     return ClipRect(
@@ -23,39 +35,63 @@ class _ProductCategoryState extends State<ProductCategory> {
             ),
             child:InkWell(
               onTap: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder:(context){
+                      return DetailsPage(
+                        imgUrl: widget.imgUrl,
+                        productName: widget.productName,
+                        productPrice: widget.productPrice,
+                        productColor: widget.productColor,
+                      );
+
+                    })
+                );
 
               },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(height:24.0),
-                  Expanded(child: Image.asset(widget.imgUrl)),
-                  Text(widget.productName),
-                  Text(widget.productColor),
-                  Text(widget.productPrice),
-                  ButtonBar(
-                    children: <Widget>[
-                      RaisedButton(
-                        onPressed: (){
-                          print('The button is being clicked');
-                        },
-                        child:Icon(Icons.add),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0)
-                        ),
-                        color: Colors.black87,
-                      ),
-                      FloatingActionButton(
-                        onPressed: (){
-                          print('The bookmark button has been clicked');
-                        },
-                        child: Icon(Icons.bookmark_border),
-                        backgroundColor: Colors.black87,
-                      )
-                    ],
-                  )
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal:12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height:24.0),
+                    Expanded(child: Image.asset(widget.imgUrl)),
+                    Text(widget.productName,
+                      style: fontStyle1),
+                    Text(widget.productColor,
+                    style: fontStyle2,),
+                    Text(widget.productPrice,
+                    style: fontStyle1,),
+                    ButtonBar(
+                      children: <Widget>[
+                        RaisedButton(
 
-                ],
+                          onPressed: (){
+                            print('The button is being clicked');
+                          },
+                          child:Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.add),
+                          ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0)
+                          ),
+                          color: Colors.black87,
+                        ),
+                        FloatingActionButton(
+                          // I nullified the hero tag as it was causing errors. This caused by the fact I am creating multiple
+                          // Floating buttons on my screen. Another way to solve teh problem is to pass an index to each button.
+                          heroTag: null,
+                          onPressed: (){
+                            print('The bookmark button has been clicked');
+                          },
+                          child: Icon(Icons.bookmark_border),
+                          backgroundColor: Colors.black87,
+                        )
+                      ],
+                    )
+
+                  ],
+                ),
               ),
             )
         ),
