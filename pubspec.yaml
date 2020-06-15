@@ -23,10 +23,11 @@ flutter:
   assets:
     - images/
   
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #         weight: 700
+  fonts:
+   - family: Work Sans
+     fonts:
+       - asset: fonts/static/WorkSans-Regular.ttf
+       - asset: fonts/static/WorkSans-Bold.ttf
+   - family: Source Sans
+     fonts:
+       - asset: fonts/SourceSansPro-Regular.ttf
