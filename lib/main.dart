@@ -20,83 +20,81 @@ class Homepage extends StatelessWidget {
       String image, String donutname, String color, String price) {
     return Column(
       children: <Widget>[
-      Expanded(
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          elevation: 6,
-          child: Center(
-            child: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.start,
-              direction: Axis.vertical,
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical:2.0,horizontal: 20),
-                    child: Image.asset(
-                      image,
-                      height: 260,
-                      width: 300,
-                    ),
-                  ),
+      Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        elevation: 6,
+        child: Center(
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.start,
+            direction: Axis.vertical,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical:12.0,horizontal: 20),
+                child: Image.asset(
+                  image,
+                  height: 260,
+                  width: 300,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    donutname,
-                    style: TextStyle(
-                        color: Color(0xfff313131),
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'proxima'),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  donutname,
+                  style: TextStyle(
+                      color: Color(0xfff313131),
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'proxima'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    color,
-                    style: TextStyle(
-                        color: Color(0xfffC2C2C2),
-                        fontSize: 25,
-                        letterSpacing: 1.6),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  color,
+                  style: TextStyle(
+                      color: Color(0xfffC2C2C2),
+                      fontSize: 25,
+                      letterSpacing: 1.6),
                 ),
-                Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Text(
-                    price,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'roboto',
-                        fontSize: 25,
-                        letterSpacing: 1.6),
-                  ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Text(
+                  price,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'roboto',
+                      fontSize: 25,
+                      letterSpacing: 1.6),
                 ),
-                new Container(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 5),
-                    child: new Row(
-                      children: <Widget>[
-                        ButtonTheme(
-                          child: FlatButton(
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(45.0),
-                                  side: BorderSide(color: Color(0xfff313131))),
-                              onPressed: () {},
-                              color: Color(0xfff313131),
-                              textColor: Colors.white,
-                              child: Icon(Icons.add),
-                            ),
-
-                          ),
-                          height: 57,
-                          minWidth: 150,
+              ),
+              new Container(
+                child: new Row(
+                  children: <Widget>[
+                    ButtonTheme(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal:28.0),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(45.0),
+                              side: BorderSide(color: Color(0xfff313131))),
+                          onPressed: () {},
+                          color: Color(0xfff313131),
+                          textColor: Colors.white,
+                          child: Icon(Icons.add),
                         ),
+                      ),
+                      height: 57,
+                      minWidth: 150,
+                    ),
 
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:38.0),
-                          child: ButtonTheme(
+                    ButtonTheme(
+                      child:
+                          Container(
+                            width: 100,
+                            height: 60,
+                            alignment: Alignment.bottomRight,
                             child: RaisedButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(38.0),
@@ -106,42 +104,20 @@ class Homepage extends StatelessWidget {
                               textColor: Colors.white,
                               child: Icon(Icons.bookmark_border),
                             ),
-                            height: 60,
-                            minWidth: 60,
-                          ),
-                        ),
-                      ],
+                      ),
+                      height: 60,
+                      minWidth: 60,
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     ],);
   }
 
-/*
-Expanded(
-                  child:  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:18.0),
-                    child: ButtonTheme(
-                      height: 50,
-                      minWidth: 150,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(38.0),
-                            side: BorderSide(color: Color(0xfff313131))),
-                        onPressed: () {},
-                        color: Color(0xfff313131),
-                        textColor: Colors.white,
-                        child: Icon(Icons.add),
-                      ),
-                    ),
-                  ),
-                ),
-* */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,42 +148,36 @@ Expanded(
               ),
             ),
           ),
-          Expanded(
-            child: Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
-                height: 490,
-                width: 500,
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    Expanded(
-                      child: FlatButton(
-                        child: Mycards('images/Torus-Black.png', 'Torus',
-                            'Noble Black', '\$199'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SecondRoute()),
-                          );
-                        },
-                      ),
-                    ),
-                    Expanded(
-                        child: FlatButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Platonic()),
-                        );
-                      },
-                      child: Mycards('images/Platonic-Gray.png', 'Platonic',
-                          'Subtle Gray', '\$299'),
-                    ))
-                  ],
-                )),
-          )
+          Container(
+              height: 490,
+              width: 500,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  FlatButton(
+                    child: Mycards('images/Torus-Black.png', 'Torus',
+                        'Noble Black', '\$199'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SecondRoute()),
+                      );
+                    },
+                  ),
+
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Platonic()),
+                      );
+                    },
+                    child: Mycards('images/Platonic-Gray.png', 'Platonic',
+                        'Subtle Gray', '\$299'),
+                  )
+                ],
+              ))
         ],
       ),
       backgroundColor: Color(0xffe6e6e6),

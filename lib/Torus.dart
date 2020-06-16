@@ -8,7 +8,7 @@ class SecondRoute extends StatefulWidget {
 
 class _SecondRouteState extends State<SecondRoute> {
   String name = "Torus-Black.png";
-  String description = "Spectacular white";
+  String description = "Amazing Black";
   Color blackcolor = Colors.black;
   Color whitecolor = Colors.white;
   Color greycolor = Colors.grey;
@@ -49,7 +49,7 @@ class _SecondRouteState extends State<SecondRoute> {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Image.asset(
                   'images/$name',
-                  width: 300,
+                  width: 270,
                 )),
             Text(
               '\$199',
@@ -60,7 +60,7 @@ class _SecondRouteState extends State<SecondRoute> {
                   letterSpacing: 1.6),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(vertical:18.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -130,39 +130,44 @@ class _SecondRouteState extends State<SecondRoute> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ButtonTheme(
-                height: 50,
-                minWidth: 300,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(38.0),
-                      side: BorderSide(color: Color(0xfff313131))),
-                  onPressed: () {},
-                  color: Color(0xfff313131),
-                  textColor: Colors.white,
-                  child: FlatButton(
+            ButtonTheme(
+              height: 50,
+              minWidth: 300,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(38.0),
+                    side: BorderSide(color: Color(0xfff313131))),
+                onPressed: () {},
+                color: Color(0xfff313131),
+                textColor: Colors.white,
+                child: FlatButton(
 
-                    child: Text("Add to cart".toUpperCase(),
-                        style: TextStyle(fontSize: 19, fontFamily: 'roboto',color: Colors.white)),
-                  onPressed: () {
-                      setState(() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Homepage()),
-                        );
-                      });
-                  },
-                  ),
+                  child: Text("Add to cart".toUpperCase(),
+                      style: TextStyle(fontSize: 19, fontFamily: 'roboto',color: Colors.white)),
+                onPressed: () {
+                    setState(() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Homepage()),
+                      );
+                    });
+                },
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical:5.0),
-              child: Text('MORE',style: TextStyle(fontSize: 22),),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Column(
+                children: <Widget>[
+                  Text('MORE',style: TextStyle(fontSize: 22),),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:2.0),
+                    child: Icon(Icons.keyboard_arrow_down,size: 25,color: Color(0xfff000000),),
+                  )
+                ],
+              ),
             ),
-            Icon(Icons.keyboard_arrow_down,size: 25,color: Color(0xfff000000),)
+
           ],
         ),
       backgroundColor: Color(0xffe6e6e6),
