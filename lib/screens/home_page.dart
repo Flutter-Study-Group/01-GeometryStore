@@ -16,8 +16,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(0),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,7 +29,7 @@ class _HomePageState extends State<HomePage> {
               height: 25.0,
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(40.0),
               child: Text(
                 'Trends',
                 textAlign: TextAlign.start,
@@ -37,41 +39,38 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 80.0),
             Container(
               width: double.infinity,
-              height: 700.0,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40.0),
-                child: ListView.builder(
-                    itemCount: products.productList.length,
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      var productList = products.productList;
-                      return ProductCard(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => DetailPage(
-                                productTitle: productList[index].productTitle,
-                                productDescription:
-                                    productList[index].productDescription,
-                                productImage: productList[index].productImage,
-                                productPrice: productList[index].productPrice,
-                              ),
+              height: screenSize.height / 1.4,
+              child: ListView.builder(
+                  itemCount: products.productList.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    var productList = products.productList;
+                    return ProductCard(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => DetailPage(
+                              productTitle: productList[index].productTitle,
+                              productDescription:
+                                  productList[index].productDescription,
+                              productImage: productList[index].productImage,
+                              productPrice: productList[index].productPrice,
                             ),
-                          );
-                        },
-                        cardContent: ProductCardContent(
-                          productImage: productList[index].productImage,
-                          productTitle: productList[index].productTitle,
-                          productDescription:
-                              productList[index].productDescription,
-                          productPrice: productList[index].productPrice,
-                        ),
-                      );
-                    }),
-              ),
+                          ),
+                        );
+                      },
+                      cardContent: ProductCardContent(
+                        productImage: productList[index].productImage,
+                        productTitle: productList[index].productTitle,
+                        productDescription:
+                            productList[index].productDescription,
+                        productPrice: productList[index].productPrice,
+                      ),
+                    );
+                  }),
             ),
           ],
         ),

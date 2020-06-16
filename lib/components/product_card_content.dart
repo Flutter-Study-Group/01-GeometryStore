@@ -66,7 +66,7 @@ class ProductCardContent extends StatelessWidget {
                     onPressed: () {
                       
                     },
-                    buttonChild: Icon(Icons.add),
+                    buttonChild: Icon(Icons.add, color: Colors.white,),
                   ),
                 ),
               ),

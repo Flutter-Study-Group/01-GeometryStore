@@ -25,7 +25,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(1),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,23 +62,25 @@ class _DetailPageState extends State<DetailPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Checkbox(
-                  value: true,
-                  onChanged: (bool newValue) {
-                    //
-                  },
+                Theme(
+                  data: ThemeData().copyWith(
+                    
+                  ),
+                  child: Radio(
+                    value: "white",
+                    groupValue: "color",
+                    onChanged: (String value) {},
+                  ),
                 ),
-                Checkbox(
-                  value: false,
-                  onChanged: (bool newValue) {
-                    //
-                  },
+                Radio(
+                  value: "black",
+                  groupValue: "color",
+                  onChanged: (String value) {},
                 ),
-                Checkbox(
-                  value: false,
-                  onChanged: (bool newValue) {
-                    //
-                  },
+                Radio(
+                  value: "grey",
+                  groupValue: "color",
+                  onChanged: (String value) {},
                 ),
               ],
             ),
