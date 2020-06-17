@@ -1,3 +1,7 @@
+//1. The fonts are slightly too big
+//2. There's not much breathing space between the text widgets
+//3. The Add Button would be better if it takes all the white space horizontally
+
 import 'package:flutter/material.dart';
 import 'package:geometry/Screens/details.dart';
 
@@ -28,7 +32,7 @@ class _ProductCategoryState extends State<ProductCategory> {
   Widget build(BuildContext context) {
     return ClipRect(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal:12.0),
+        padding: const EdgeInsets.symmetric(horizontal:22.0),
         child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -49,7 +53,7 @@ class _ProductCategoryState extends State<ProductCategory> {
 
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal:12.0),
+                padding: const EdgeInsets.symmetric(horizontal:44.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -57,14 +61,19 @@ class _ProductCategoryState extends State<ProductCategory> {
                     Expanded(child: Image.asset(widget.imgUrl)),
                     Text(widget.productName,
                       style: fontStyle1),
+                    SizedBox(height:14.0),
                     Text(widget.productColor,
                     style: fontStyle2,),
+                    SizedBox(height:14.0),
                     Text(widget.productPrice,
                     style: fontStyle1,),
                     ButtonBar(
+                        alignment:MainAxisAlignment.center,
+                        mainAxisSize:MainAxisSize.max,
+                        buttonMinWidth: 100,
                       children: <Widget>[
                         RaisedButton(
-
+                          
                           onPressed: (){
                             print('The button is being clicked');
                           },

@@ -10,7 +10,7 @@ Widget appBar(){
         textAlign: TextAlign.center,
          style: TextStyle(
            fontFamily: 'Source Sans',
-           fontSize: 20.0,
+           fontSize: 17.0,
            fontWeight: FontWeight.bold
          ),),
       onTap:(){

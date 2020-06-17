@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontFamily: 'Work Sans/WorkSans-Bold',
-                      fontSize: 35.0
+                      fontSize: 30.0
                     ),
                   ),
                 ),

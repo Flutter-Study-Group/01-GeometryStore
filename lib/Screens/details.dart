@@ -16,7 +16,10 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+         iconTheme: IconThemeData(
+         color: Colors.black87, //change your color here
+  ),
       ),
       body:SafeArea(
         child: ProductDetails(
