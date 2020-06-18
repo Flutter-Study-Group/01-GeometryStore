@@ -14,6 +14,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void navigateToProductDetailPage(String productTitle,
+      String productDescription, String productImage, String productPrice) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => DetailPage(
+          productTitle: productTitle,
+          productDescription: productDescription,
+          productImage: productImage,
+          productPrice: productPrice,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // var screenSize = MediaQuery.of(context).size;
@@ -49,18 +64,11 @@ class _HomePageState extends State<HomePage> {
                     var productList = products.productList;
                     return ProductCard(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => DetailPage(
-                              productTitle: productList[index].productTitle,
-                              productDescription:
-                                  productList[index].productDescription,
-                              productImage: productList[index].productImage,
-                              productPrice: productList[index].productPrice,
-                            ),
-                          ),
-                        );
+                        navigateToProductDetailPage(
+                            productList[index].productTitle,
+                            productList[index].productDescription,
+                            productList[index].productImage,
+                            productList[index].productPrice);
                       },
                       cardContent: ProductCardContent(
                         productImage: productList[index].productImage,
@@ -68,6 +76,13 @@ class _HomePageState extends State<HomePage> {
                         productDescription:
                             productList[index].productDescription,
                         productPrice: productList[index].productPrice,
+                        onPressed: () {
+                          navigateToProductDetailPage(
+                            productList[index].productTitle,
+                            productList[index].productDescription,
+                            productList[index].productImage,
+                            productList[index].productPrice);
+                        },
                       ),
                     );
                   }),

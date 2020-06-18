@@ -11,12 +11,14 @@ class ProductCardContent extends StatelessWidget {
     @required this.productImage,
     @required this.productDescription,
     @required this.productPrice,
+    @required this.onPressed,
   });
 
   final String productImage;
   final String productTitle;
   final String productDescription;
   final String productPrice;
+  final Function onPressed;
   // final Color productColor;
 
   @override
@@ -61,7 +63,7 @@ class ProductCardContent extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 30.0),
                   child: StyleButton(
                     // height: 70.0,
-                    onPressed: () {},
+                    onPressed: onPressed,
                     buttonChild: Icon(
                       Icons.add,
                       color: Colors.white,
