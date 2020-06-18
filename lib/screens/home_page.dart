@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+    // var screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: buildAppBar(0),
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 80.0),
             Container(
               width: double.infinity,
-              height: screenSize.height / 1.4,
+              height: 600,
               child: ListView.builder(
                   itemCount: products.productList.length,
                   scrollDirection: Axis.horizontal,

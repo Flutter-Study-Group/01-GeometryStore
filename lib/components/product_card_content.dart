@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geometry/constants.dart';
 import 'package:geometry/components/styled_button.dart';
+// import 'package:charcode/charcode.dart';
 
 class ProductCardContent extends StatelessWidget {
   ProductCardContent({
@@ -22,34 +24,30 @@ class ProductCardContent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
+      // mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Expanded(
             flex: 7,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: Image.asset(
-                productImage,
+            child: Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Image.asset(productImage),
               ),
             )),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 40.0),
-            child: Text(productTitle, style: kH1TextStyle),
-          ),
+        Padding(
+          padding: const EdgeInsets.only(left: 30.0),
+          child: Text(productTitle, style: kH1TextStyle),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 40.0),
-            child: Text(productDescription, style: kProductColorTitle),
-          ),
+        Padding(
+          padding: const EdgeInsets.only(left: 30.0),
+          child: Text(productDescription, style: kProductColorTitle),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 40.0),
-            child: Text(
-              '\$$productPrice',
-              style: kPriceTextStyle,
-            ),
+        Padding(
+          padding: const EdgeInsets.only(left: 30.0),
+          child: Text(
+            '$productPrice',
+            style: kPriceTextStyle,
           ),
         ),
         Expanded(
@@ -60,13 +58,14 @@ class ProductCardContent extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
-                  child: StyledButton(
-                    height: 70.0,
-                    onPressed: () {
-                      
-                    },
-                    buttonChild: Icon(Icons.add, color: Colors.white,),
+                  padding: const EdgeInsets.only(left: 30.0),
+                  child: StyleButton(
+                    // height: 70.0,
+                    onPressed: () {},
+                    buttonChild: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -74,6 +73,7 @@ class ProductCardContent extends StatelessWidget {
                 child: SizedBox(
                   height: 70.0,
                   child: RaisedButton(
+                    elevation: 10.0,
                     onPressed: () {
                       // add to wishlist
                     },

@@ -19,8 +19,10 @@ class DetailPage extends StatefulWidget {
   _DetailPageState createState() => _DetailPageState();
 }
 
+enum Colours { white, grey, black }
+
 class _DetailPageState extends State<DetailPage> {
-  Color colorChoice = Color(0xFFFFFF);
+  Colours _colours;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class _DetailPageState extends State<DetailPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Expanded(
             child: Padding(
@@ -40,14 +43,16 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
           Expanded(
-            child: Text(
-              widget.productDescription,
-              style: kProductColorTitle,
+            child: Align(
+              child: Text(
+                widget.productDescription,
+                style: kProductColorTitle,
+              ),
             ),
           ),
           Expanded(
-            flex: 5,
-            child: Image.asset(widget.productImage),
+            flex: 4,
+            child: Center(child: Image.asset(widget.productImage)),
           ),
           Expanded(
             child: Padding(
@@ -61,26 +66,55 @@ class _DetailPageState extends State<DetailPage> {
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Theme(
-                  data: ThemeData().copyWith(
-                    
-                  ),
-                  child: Radio(
-                    value: "white",
-                    groupValue: "color",
-                    onChanged: (String value) {},
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50.0),
+                    child: InkWell(
+                      child: Container(
+                        color: Colors.white,
+                        child: Icon(
+                          Icons.radio_button_unchecked,
+                          color: Colors.white,
+                          size: 50.0,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                Radio(
-                  value: "black",
-                  groupValue: "color",
-                  onChanged: (String value) {},
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50.0),
+                    child: Container(
+                      color: Colors.black,
+                      child: InkWell(
+                        child: Icon(
+                          Icons.radio_button_checked,
+                          color: Colors.black,
+                          size: 50.0,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                Radio(
-                  value: "grey",
-                  groupValue: "color",
-                  onChanged: (String value) {},
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50.0),
+                    child: Container(
+                      color: Colors.grey,
+                      child: InkWell(
+                        child: Icon(
+                          Icons.radio_button_checked,
+                          color: Colors.grey,
+                          size: 50.0,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -88,12 +122,26 @@ class _DetailPageState extends State<DetailPage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: StyledButton(
-                onPressed: () {},
-                buttonChild: Text(
-                  'ADD TO CARD',
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width / 1.3,
+                child: StyleButton(
+                  onPressed: () {},
+                  buttonChild: Text(
+                    'ADD TO CARD',
+                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  ),
                 ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  Text('MORE', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, letterSpacing: 1.9),),
+                  Icon(Icons.keyboard_arrow_down),
+                ],
               ),
             ),
           ),

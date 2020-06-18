@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+// import 'package:charcode/charcode.dart';
+
+const dollarSign = '\u0024';
+const nine = '\u2079';
 
 class Product {
   Product(
@@ -22,36 +26,12 @@ class ProductList {
         productDescription: 'Noble Black',
         productImage: 'images/Torus-Black.png',
         productColor: Colors.white,
-        productPrice: '199.99'),
+        productPrice: '${dollarSign}199$nine$nine'),
     Product(
         productTitle: 'Platonic',
         productDescription: 'Spectacular White',
         productImage: 'images/Platonic-White.png',
         productColor: Colors.white,
-        productPrice: '199.99'),
-    Product(
-        productTitle: 'Torus',
-        productDescription: 'Noble Black',
-        productImage: 'images/Torus-Black.png',
-        productColor: Colors.white,
-        productPrice: '199.99'),
-    Product(
-        productTitle: 'Torus',
-        productDescription: 'Noble Black',
-        productImage: 'images/Torus-Black.png',
-        productColor: Colors.white,
-        productPrice: '199.99'),
-    Product(
-        productTitle: 'Torus',
-        productDescription: 'Noble Black',
-        productImage: 'images/Torus-Black.png',
-        productColor: Colors.white,
-        productPrice: '199.99'),
-    Product(
-        productTitle: 'Torus',
-        productDescription: 'Noble Black',
-        productImage: 'images/Torus-Black.png',
-        productColor: Colors.white,
-        productPrice: '199.99'),
+        productPrice: '${dollarSign}199.99$nine$nine'),
   ];
 }
