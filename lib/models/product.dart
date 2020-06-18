@@ -32,6 +32,6 @@ class ProductList {
         productDescription: 'Spectacular White',
         productImage: 'images/Platonic-White.png',
         productColor: Colors.white,
-        productPrice: '${dollarSign}199.99$nine$nine'),
+        productPrice: '${dollarSign}199$nine$nine'),
   ];
 }

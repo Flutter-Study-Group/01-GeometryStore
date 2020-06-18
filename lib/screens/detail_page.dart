@@ -73,6 +73,7 @@ class _DetailPageState extends State<DetailPage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(50.0),
                     child: InkWell(
+                      onTap: () {},
                       child: Container(
                         color: Colors.white,
                         child: Icon(
