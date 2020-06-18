@@ -22,7 +22,7 @@ class DetailPage extends StatefulWidget {
 enum Colours { white, grey, black }
 
 class _DetailPageState extends State<DetailPage> {
-  Colours _colours;
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,52 +70,15 @@ class _DetailPageState extends State<DetailPage> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50.0),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        color: Colors.white,
-                        child: Icon(
-                          Icons.radio_button_unchecked,
-                          color: Colors.white,
-                          size: 50.0,
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: ColorsRadio(color: Colors.white),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50.0),
-                    child: Container(
-                      color: Colors.black,
-                      child: InkWell(
-                        child: Icon(
-                          Icons.radio_button_checked,
-                          color: Colors.black,
-                          size: 50.0,
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: ColorsRadio(color: Colors.grey)
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50.0),
-                    child: Container(
-                      color: Colors.grey,
-                      child: InkWell(
-                        child: Icon(
-                          Icons.radio_button_checked,
-                          color: Colors.grey,
-                          size: 50.0,
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: ColorsRadio(color: Colors.black),
                 ),
               ],
             ),
@@ -140,7 +103,13 @@ class _DetailPageState extends State<DetailPage> {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  Text('MORE', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, letterSpacing: 1.9),),
+                  Text(
+                    'MORE',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        letterSpacing: 1.9),
+                  ),
                   Icon(Icons.keyboard_arrow_down),
                 ],
               ),
@@ -148,6 +117,41 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ColorsRadio extends StatelessWidget {
+  ColorsRadio({this.color, this.onSelected, this.borderColor : const Color(0xFFE3E3E3)});
+
+  final Color color;
+  final Color borderColor;
+  final Function onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 60.0,
+        height: 60.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          border: Border.all(width: 4.5, color: color),
+          color: color,
+        ),
+        child: Center(
+          child: Container(
+            width: 50.0,
+            height: 50.0,
+            decoration: BoxDecoration(
+              border: Border.all(width: 4.0, color: borderColor),
+              borderRadius: BorderRadius.circular(50.0),
+              color: color,
+            ),
+            child: InkWell(
+              onTap: onSelected,
+            ),
+          ),
+        ),
     );
   }
 }

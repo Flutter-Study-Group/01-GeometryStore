@@ -7,7 +7,7 @@ Widget buildAppBar(int depth) {
       elevation: 0.0,
       title: Text(
         'GEOMETRY',
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.black, letterSpacing: 2.0,),
       ),
       centerTitle: true,
     );
@@ -15,10 +15,9 @@ Widget buildAppBar(int depth) {
     return AppBar(
       elevation: 0.0,
       title: Text(
-        'GEOMETRY',
+        '',
         style: TextStyle(color: Colors.black),
       ),
-      centerTitle: true,
     );
   }
 }

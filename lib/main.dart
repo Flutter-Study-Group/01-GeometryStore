@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Color(0xFFF5F5F5),
+        scaffoldBackgroundColor: Color(0xFFE3E3E3),
         appBarTheme: AppBarTheme(
             color: Color(0xFFF5F5F5),
             iconTheme: IconThemeData(color: Colors.black)),
