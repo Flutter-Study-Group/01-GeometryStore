@@ -14,8 +14,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void navigateToProductDetailPage(String productTitle,
-      String productDescription, String productImage, String productPrice) {
+  void navigateToProductDetailPage(
+      String productTitle,
+      String productDescription,
+      String productImage,
+      String productPrice,
+      Color productColor) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -24,6 +28,7 @@ class _HomePageState extends State<HomePage> {
           productDescription: productDescription,
           productImage: productImage,
           productPrice: productPrice,
+          productColor: productColor,
         ),
       ),
     );
@@ -54,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 80.0),
             Container(
               width: double.infinity,
-              height: 600,
+              height: 620,
               child: ListView.builder(
                   itemCount: products.productList.length,
                   scrollDirection: Axis.horizontal,
@@ -68,7 +73,8 @@ class _HomePageState extends State<HomePage> {
                             productList[index].productTitle,
                             productList[index].productDescription,
                             productList[index].productImage,
-                            productList[index].productPrice);
+                            productList[index].productPrice,
+                            productList[index].productColor);
                       },
                       cardContent: ProductCardContent(
                         productImage: productList[index].productImage,
@@ -76,12 +82,14 @@ class _HomePageState extends State<HomePage> {
                         productDescription:
                             productList[index].productDescription,
                         productPrice: productList[index].productPrice,
+                        productColor: productList[index].productColor,
                         onPressed: () {
                           navigateToProductDetailPage(
-                            productList[index].productTitle,
-                            productList[index].productDescription,
-                            productList[index].productImage,
-                            productList[index].productPrice);
+                              productList[index].productTitle,
+                              productList[index].productDescription,
+                              productList[index].productImage,
+                              productList[index].productPrice,
+                              productList[index].productColor);
                         },
                       ),
                     );

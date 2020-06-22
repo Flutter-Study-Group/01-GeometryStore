@@ -39,10 +39,10 @@ class StyleButton extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
         side: BorderSide(),
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(50.0),
       ),
       onPressed: onPressed,
-      child: buttonChild,
+      child: Center(child: buttonChild),
     );
   }
 }

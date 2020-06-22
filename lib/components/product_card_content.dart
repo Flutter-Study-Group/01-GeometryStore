@@ -11,6 +11,7 @@ class ProductCardContent extends StatelessWidget {
     @required this.productImage,
     @required this.productDescription,
     @required this.productPrice,
+    @required this.productColor,
     @required this.onPressed,
   });
 
@@ -18,6 +19,7 @@ class ProductCardContent extends StatelessWidget {
   final String productTitle;
   final String productDescription;
   final String productPrice;
+  final Color productColor;
   final Function onPressed;
   // final Color productColor;
 
@@ -26,70 +28,66 @@ class ProductCardContent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
-      // mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Expanded(
-            flex: 7,
-            child: Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Image.asset(productImage),
-              ),
-            )),
+        SizedBox(height: 15.0),
+        Center(child: Image.asset(productImage)),
         Padding(
-          padding: const EdgeInsets.only(left: 30.0),
+          padding: const EdgeInsets.only(left: 40.0),
           child: Text(productTitle, style: kH1TextStyle),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 30.0),
+          padding: const EdgeInsets.only(left: 40.0),
           child: Text(productDescription, style: kProductColorTitle),
         ),
+        SizedBox(height: 15.0),
         Padding(
-          padding: const EdgeInsets.only(left: 30.0),
+          padding: const EdgeInsets.only(left: 40.0),
           child: Text(
             '$productPrice',
             style: kPriceTextStyle,
           ),
         ),
         Expanded(
-          flex: 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30.0),
-                  child: StyleButton(
-                    // height: 70.0,
-                    onPressed: onPressed,
-                    buttonChild: Icon(
-                      Icons.add,
-                      color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0),
+                    child: StyleButton(
+                      // height: 70.0,
+                      onPressed: onPressed,
+                      buttonChild: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: SizedBox(
-                  height: 70.0,
-                  child: RaisedButton(
-                    elevation: 10.0,
-                    onPressed: () {
-                      // add to wishlist
-                    },
-                    color: Color(0xFF313131),
-                    shape: CircleBorder(),
-                    child: Icon(
-                      FontAwesomeIcons.bookmark,
-                      color: Colors.white,
-                      size: 20.0,
+                Expanded(
+                  child: SizedBox(
+                    height: 70.0,
+                    child: RaisedButton(
+                      elevation: 10.0,
+                      onPressed: () {
+                        // add to wishlist
+                      },
+                      color: Color(0xFF313131),
+                      shape: CircleBorder(),
+                      child: Icon(
+                        FontAwesomeIcons.bookmark,
+                        color: Colors.white,
+                        size: 20.0,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geometry/screens/home_page.dart';
+import 'constants.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Color(0xFFE3E3E3),
         appBarTheme: AppBarTheme(
-            color: Color(0xFFF5F5F5),
+            color: kScaffoldBackgroundColor,
             iconTheme: IconThemeData(color: Colors.black)),
         textTheme: TextTheme(
           bodyText2: TextStyle(

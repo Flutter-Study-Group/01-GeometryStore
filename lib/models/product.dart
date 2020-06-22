@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:charcode/charcode.dart';
-
-const dollarSign = '\u0024';
-const nine = '\u2079';
+import 'package:geometry/constants.dart';
 
 class Product {
   Product(
@@ -12,11 +9,11 @@ class Product {
       this.productPrice,
       this.productColor});
 
-  final String productTitle;
-  final String productDescription;
-  final String productImage;
-  final String productPrice;
-  final Color productColor;
+   String productTitle;
+   String productDescription;
+   String productImage;
+   String productPrice;
+   Color productColor;
 }
 
 class ProductList {
@@ -25,7 +22,7 @@ class ProductList {
         productTitle: 'Torus',
         productDescription: 'Noble Black',
         productImage: 'images/Torus-Black.png',
-        productColor: Colors.white,
+        productColor: Colors.black,
         productPrice: '${dollarSign}199$nine$nine'),
     Product(
         productTitle: 'Platonic',
