@@ -6,11 +6,13 @@ import 'package:geometry/models/product.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage(
-      {@required this.productTitle,
+      {@required Key key,
+      @required this.productTitle,
       @required this.productDescription,
       @required this.productImage,
       @required this.productPrice,
-      @required this.productColor});
+      @required this.productColor})
+      : super(key: key);
 
   final String productTitle;
   final String productDescription;
@@ -68,8 +70,10 @@ class _DetailPageState extends State<DetailPage> {
         product.productPrice = '${dollarSign}199$nine$nine';
       }
 
-print(product.productImage);
+      print(product.productImage);
+      print(product.productDescription);
       DetailPage(
+          key: UniqueKey(),
           productColor: product.productColor,
           productDescription: product.productDescription,
           productImage: product.productImage,
@@ -82,35 +86,46 @@ print(product.productImage);
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(1),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          SizedBox(height: 30.0),
-          Text(
-            widget.productTitle,
-            style: kH1TextStyle,
-          ),
-          Text(
-            widget.productDescription,
-            style: kProductColorTitle,
-          ),
-          SizedBox(height: 30.0),
-          Expanded(flex: 4, child: Image.asset(widget.productImage)),
-          SizedBox(height: 5.0),
-          Text(
-            widget.productPrice,
-            style: kPriceTextStyle,
-          ),
-          Expanded(
-            child: Row(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 30.0),
+            Text(
+              widget.productTitle,
+              key: UniqueKey(),
+              style: kH1TextStyle,
+            ),
+            Text(
+              widget.productDescription,
+              key: UniqueKey(),
+              style: kProductColorTitle,
+            ),
+            SizedBox(height: 30.0),
+            AspectRatio(
+                key: UniqueKey(),
+                aspectRatio: 21.0 / 16.0,
+                child: Image.asset(
+                  widget.productImage,
+                  fit: BoxFit.contain,
+                )),
+            SizedBox(height: 5.0),
+            Text(
+              widget.productPrice,
+              style: kPriceTextStyle,
+            ),
+            SizedBox(
+              height: 25.0,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RadioButton(
+                    key: UniqueKey(),
                     color: Colors.white,
                     borderColor: defaultRadioColor == Colors.white
                         ? Color(0xFFE3E3E3)
@@ -124,6 +139,7 @@ print(product.productImage);
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: RadioButton(
+                      key: UniqueKey(),
                       color: Colors.grey,
                       borderColor: defaultRadioColor == Colors.grey
                           ? Color(0xFFE3E3E3)
@@ -136,6 +152,7 @@ print(product.productImage);
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RadioButton(
+                    key: UniqueKey(),
                     color: Colors.black,
                     borderColor: defaultRadioColor == Colors.black
                         ? Color(0xFFE3E3E3)
@@ -148,9 +165,10 @@ print(product.productImage);
                 ),
               ],
             ),
-          ),
-          Expanded(
-            child: Padding(
+            SizedBox(
+              height: 25.0,
+            ),
+            Padding(
               padding: const EdgeInsets.all(16.0),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width / 1.3,
@@ -163,9 +181,7 @@ print(product.productImage);
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
@@ -180,8 +196,8 @@ print(product.productImage);
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -189,11 +205,16 @@ print(product.productImage);
 
 class RadioButton extends StatelessWidget {
   RadioButton(
-      {this.color, this.onSelected, this.borderColor: const Color(0xFFE3E3E3)});
+      {this.key,
+      this.color,
+      this.onSelected,
+      this.borderColor: const Color(0xFFE3E3E3)})
+      : super(key: key);
 
   final Color color;
   final Color borderColor;
   final Function onSelected;
+  final Key key;
 
   @override
   Widget build(BuildContext context) {
