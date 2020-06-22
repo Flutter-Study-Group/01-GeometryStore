@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geometry/homescreen.dart';
+import 'package:geometry/product_detail.dart';
 
 void main() {
   runApp(MyApp());
