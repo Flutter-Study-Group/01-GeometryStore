@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:geometry/components/nav_bar.dart';
 import 'package:geometry/components/styled_button.dart';
 import 'package:geometry/constants.dart';
-import 'package:geometry/models/product.dart';
+import 'package:geometry/components/custom_radio.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage(
-      {@required Key key,
+      {Key key,
       @required this.productTitle,
       @required this.productDescription,
       @required this.productImage,
@@ -27,58 +27,75 @@ class DetailPage extends StatefulWidget {
 enum Colours { white, grey, black }
 
 class _DetailPageState extends State<DetailPage> {
-  Color defaultRadioColor;
-  Color selectedRadioBorderColor;
-  String productTitle;
-  Product product = Product();
+  Colours selectedRadioColor;
+
+  bool _whiteRadioselected = false;
+  bool _greyRadioselected = false;
+  bool _blackRadioselected = false;
+
+  void _handleWhichRadioSelected(int index) {
+    setState(() {
+      if (index == 0) {
+        _whiteRadioselected = true;
+        _greyRadioselected = false;
+        _blackRadioselected = false;
+      } else if (index == 1) {
+        _greyRadioselected = true;
+        _whiteRadioselected = false;
+        _blackRadioselected = false;
+      } else {
+        _blackRadioselected = true;
+        _whiteRadioselected = false;
+        _greyRadioselected = false;
+      }
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    defaultRadioColor = widget.productColor;
-    productTitle = widget.productTitle;
+    if (widget.productColor == Colors.white)
+      _whiteRadioselected = true;
+    else if (widget.productColor == Colors.grey)
+      _greyRadioselected = true;
+    else
+      _blackRadioselected = true;
   }
 
-  void updateUI(Color col, String title) {
+  void updateUI(Colours col, String title) {
     setState(() {
-      print(col);
-      print(title);
-
-      if (col == Colors.white) {
-        product.productColor = col;
-        product.productDescription = "Spectacular White";
-        product.productImage = title == "Torus"
-            ? "images/Torus-White.png"
-            : "images/Platonic-White.png";
-        product.productTitle = title;
-        product.productPrice = '${dollarSign}199$nine$nine';
-      } else if (col == Colors.grey) {
-        product.productColor = col;
-        product.productDescription = "Amazing Grey";
-        product.productImage = title == "Torus"
-            ? "images/Torus-Gray.png"
-            : "images/Platonic-Gray.png";
-        product.productTitle = title;
-        product.productPrice = '${dollarSign}199$nine$nine';
+      if (col == Colours.white) {
+        DetailPage(
+            productColor: Colors.white,
+            productDescription: "Spectacular White",
+            productImage: widget.productTitle == "Torus"
+                ? "images/Torus-Black.png"
+                : "images/Platonic-Black.png",
+            productPrice: widget.productPrice,
+            productTitle: widget.productTitle);
+      } else if (col == Colours.grey) {
+        DetailPage(
+            productColor: Colors.grey,
+            productDescription: "Amazing Grey",
+            productImage: widget.productTitle == "Torus"
+                ? "images/Torus-Black.png"
+                : "images/Platonic-Black.png",
+            productPrice: widget.productPrice,
+            productTitle: widget.productTitle);
       } else {
-        product.productColor = col;
-        product.productDescription = "Noble Black";
-        product.productImage = title == "Torus"
-            ? "images/Torus-Black.png"
-            : "images/Platonic-Black.png";
-        product.productTitle = title;
-        product.productPrice = '${dollarSign}199$nine$nine';
+        DetailPage(
+            productColor: Colors.black,
+            productDescription: "Noble Black",
+            productImage: widget.productTitle == "Torus"
+                ? "images/Torus-Black.png"
+                : "images/Platonic-Black.png",
+            productPrice: widget.productPrice,
+            productTitle: widget.productTitle);
       }
 
-      print(product.productImage);
-      print(product.productDescription);
-      DetailPage(
-          key: UniqueKey(),
-          productColor: product.productColor,
-          productDescription: product.productDescription,
-          productImage: product.productImage,
-          productPrice: product.productPrice,
-          productTitle: product.productTitle);
+      print(widget.productColor);
+      print(widget.productTitle);
+      print(widget.productDescription);
     });
   }
 
@@ -94,25 +111,24 @@ class _DetailPageState extends State<DetailPage> {
             SizedBox(height: 30.0),
             Text(
               widget.productTitle,
-              key: UniqueKey(),
               style: kH1TextStyle,
             ),
             Text(
               widget.productDescription,
-              key: UniqueKey(),
               style: kProductColorTitle,
             ),
             SizedBox(height: 30.0),
             AspectRatio(
-                key: UniqueKey(),
                 aspectRatio: 21.0 / 16.0,
                 child: Image.asset(
                   widget.productImage,
+                  key: UniqueKey(),
                   fit: BoxFit.contain,
                 )),
             SizedBox(height: 5.0),
             Text(
               widget.productPrice,
+              key: UniqueKey(),
               style: kPriceTextStyle,
             ),
             SizedBox(
@@ -120,47 +136,33 @@ class _DetailPageState extends State<DetailPage> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RadioButton(
-                    key: UniqueKey(),
+                    index: 0,
                     color: Colors.white,
-                    borderColor: defaultRadioColor == Colors.white
-                        ? Color(0xFFE3E3E3)
-                        : Colors.white,
-                    onSelected: () {
-                      selectedRadioBorderColor = Colors.white;
-                      updateUI(selectedRadioBorderColor, productTitle);
-                    },
+                    isSelected: _whiteRadioselected,
+                    onSelected: _handleWhichRadioSelected,
                   ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RadioButton(
-                      key: UniqueKey(),
-                      color: Colors.grey,
-                      borderColor: defaultRadioColor == Colors.grey
-                          ? Color(0xFFE3E3E3)
-                          : Colors.grey,
-                      onSelected: () {
-                        selectedRadioBorderColor = Colors.grey;
-                        updateUI(selectedRadioBorderColor, productTitle);
-                      },
-                    )),
+                  padding: const EdgeInsets.all(8.0),
+                  child: RadioButton(
+                    index: 1,
+                    color: Colors.grey,
+                    isSelected: _greyRadioselected,
+                    onSelected: _handleWhichRadioSelected,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RadioButton(
-                    key: UniqueKey(),
+                    index: 2,
                     color: Colors.black,
-                    borderColor: defaultRadioColor == Colors.black
-                        ? Color(0xFFE3E3E3)
-                        : Colors.black,
-                    onSelected: () {
-                      selectedRadioBorderColor = Colors.black;
-                      updateUI(selectedRadioBorderColor, productTitle);
-                    },
+                    isSelected: _blackRadioselected,
+                    onSelected: _handleWhichRadioSelected,
                   ),
                 ),
               ],
@@ -197,47 +199,6 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class RadioButton extends StatelessWidget {
-  RadioButton(
-      {this.key,
-      this.color,
-      this.onSelected,
-      this.borderColor: const Color(0xFFE3E3E3)})
-      : super(key: key);
-
-  final Color color;
-  final Color borderColor;
-  final Function onSelected;
-  final Key key;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 60.0,
-      height: 60.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50.0),
-        border: Border.all(width: 4.5, color: color),
-        color: color,
-      ),
-      child: Center(
-        child: Container(
-          width: 50.0,
-          height: 50.0,
-          decoration: BoxDecoration(
-            border: Border.all(width: 4.0, color: borderColor),
-            borderRadius: BorderRadius.circular(50.0),
-            color: color,
-          ),
-          child: InkWell(
-            onTap: onSelected,
-          ),
         ),
       ),
     );

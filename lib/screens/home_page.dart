@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => DetailPage(
-          key: UniqueKey(),
           productTitle: productTitle,
           productDescription: productDescription,
           productImage: productImage,
