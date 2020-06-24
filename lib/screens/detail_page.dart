@@ -3,6 +3,7 @@ import 'package:geometry/components/nav_bar.dart';
 import 'package:geometry/components/styled_button.dart';
 import 'package:geometry/constants.dart';
 import 'package:geometry/components/custom_radio.dart';
+import 'package:geometry/models/product.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage(
@@ -28,6 +29,7 @@ enum Colours { white, grey, black }
 
 class _DetailPageState extends State<DetailPage> {
   Colours selectedRadioColor;
+  Product product = Product();
 
   bool _whiteRadioselected = false;
   bool _greyRadioselected = false;
@@ -39,14 +41,17 @@ class _DetailPageState extends State<DetailPage> {
         _whiteRadioselected = true;
         _greyRadioselected = false;
         _blackRadioselected = false;
+        updateUI(index, widget.productTitle);
       } else if (index == 1) {
         _greyRadioselected = true;
         _whiteRadioselected = false;
         _blackRadioselected = false;
+        updateUI(index, widget.productTitle);
       } else {
         _blackRadioselected = true;
         _whiteRadioselected = false;
         _greyRadioselected = false;
+        updateUI(index, widget.productTitle);
       }
     });
   }
@@ -54,6 +59,13 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
+    product = Product(
+        productTitle: widget.productTitle,
+        productDescription: widget.productDescription,
+        productPrice: widget.productPrice,
+        productColor: widget.productColor,
+        productImage: widget.productImage);
+
     if (widget.productColor == Colors.white)
       _whiteRadioselected = true;
     else if (widget.productColor == Colors.grey)
@@ -62,28 +74,28 @@ class _DetailPageState extends State<DetailPage> {
       _blackRadioselected = true;
   }
 
-  void updateUI(Colours col, String title) {
+  void updateUI(int index, String title) {
     setState(() {
-      if (col == Colours.white) {
-        DetailPage(
+      if (index == Colours.white.index) {
+        product = Product(
             productColor: Colors.white,
             productDescription: "Spectacular White",
             productImage: widget.productTitle == "Torus"
-                ? "images/Torus-Black.png"
-                : "images/Platonic-Black.png",
+                ? "images/Torus-White.png"
+                : "images/Platonic-White.png",
             productPrice: widget.productPrice,
             productTitle: widget.productTitle);
-      } else if (col == Colours.grey) {
-        DetailPage(
+      } else if (index == Colours.grey.index) {
+        product = Product(
             productColor: Colors.grey,
             productDescription: "Amazing Grey",
             productImage: widget.productTitle == "Torus"
-                ? "images/Torus-Black.png"
-                : "images/Platonic-Black.png",
+                ? "images/Torus-Gray.png"
+                : "images/Platonic-Gray.png",
             productPrice: widget.productPrice,
             productTitle: widget.productTitle);
       } else {
-        DetailPage(
+        product = Product(
             productColor: Colors.black,
             productDescription: "Noble Black",
             productImage: widget.productTitle == "Torus"
@@ -92,10 +104,6 @@ class _DetailPageState extends State<DetailPage> {
             productPrice: widget.productPrice,
             productTitle: widget.productTitle);
       }
-
-      print(widget.productColor);
-      print(widget.productTitle);
-      print(widget.productDescription);
     });
   }
 
@@ -110,25 +118,23 @@ class _DetailPageState extends State<DetailPage> {
           children: <Widget>[
             SizedBox(height: 30.0),
             Text(
-              widget.productTitle,
+              '${product.productTitle}',
               style: kH1TextStyle,
             ),
             Text(
-              widget.productDescription,
+              '${product.productDescription}',
               style: kProductColorTitle,
             ),
             SizedBox(height: 30.0),
             AspectRatio(
                 aspectRatio: 21.0 / 16.0,
                 child: Image.asset(
-                  widget.productImage,
-                  key: UniqueKey(),
+                  '${product.productImage}',
                   fit: BoxFit.contain,
                 )),
             SizedBox(height: 5.0),
             Text(
-              widget.productPrice,
-              key: UniqueKey(),
+              '${product.productPrice}',
               style: kPriceTextStyle,
             ),
             SizedBox(
@@ -177,7 +183,7 @@ class _DetailPageState extends State<DetailPage> {
                 child: StyleButton(
                   onPressed: () {},
                   buttonChild: Text(
-                    'ADD TO CARD',
+                    'ADD TO CART',
                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                   ),
                 ),
